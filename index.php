@@ -53,8 +53,21 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-
+	if( isset( $_SERVER['SERVER_NAME'] ) )
+	{
+		if( strpos( $_SERVER['SERVER_NAME'], 'bar-shem.co.il' ) !== FALSE )
+		{
+			define('ENVIRONMENT', 'staging');
+		}
+		else 
+		{
+			define('ENVIRONMENT', 'devellopment');
+		}
+	}
+	else
+	{
+		define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	}
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
