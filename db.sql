@@ -16,6 +16,39 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` enum('pending','active','deleted','banned') NOT NULL DEFAULT 'pending',
+  `email` varchar(255) NOT NULL,
+  `password` binary(60) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `role` enum('user','admin') NOT NULL DEFAULT 'user',
+  `modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `users_email_idx` (`email`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`user_id`, `status`, `email`, `password`, `firstname`, `lastname`, `role`, `modified`, `created`) VALUES (2,'active','israelvainberg@gmail.com',_binary '$2y$10$EtmoK34zNgfsyo4QC8Hlxe4BAjzTUvbHL6NiuSPG06mKSVu85JkU6','Israel','Vainberg','user',NULL,'2019-05-09 09:31:39'),(3,'active','israelvainberg2@gmail.com',_binary '$2y$10$Un5QLhaG.5Btijay2iVDCO6XjFnS7Lt8pidZpsyc5FOYXjsESpXea','Pika','Zvik','user',NULL,'2019-05-11 14:37:16'),(4,'active','israelvainberg3@gmail.com',_binary '$2y$10$Hz4YfR63m/96iNvTsY8YtuPYqclNsRm9I3sTo6r7f33rECJucgFVq','Toca','Toca','user',NULL,'2019-05-11 14:37:55'),(5,'active','israelvainberg4@gmail.com',_binary '$2y$10$p9Jj.ChjHGquVUgzc4KSVuEqkjQqiTTSeRxinoXLheolIqR7miu0O','Voo','Vue','user',NULL,'2019-05-12 11:45:48');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--
 -- Table structure for table `friends`
 --
 
@@ -75,39 +108,6 @@ LOCK TABLES `posts` WRITE;
 INSERT INTO `posts` (`post_id`, `user_id`, `content`, `created`) VALUES (1,3,'This is My First post','2019-05-12 08:34:21'),(2,3,'This is my second post. as you can see i dont wait for a long time to write something else','2019-05-12 08:35:01'),(3,2,'My cool reply','2019-05-12 09:06:29'),(4,5,'This is my post friends','2019-05-12 12:06:35'),(5,5,'This is another post','2019-05-12 12:08:24');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` enum('pending','active','deleted','banned') NOT NULL DEFAULT 'pending',
-  `email` varchar(255) NOT NULL,
-  `password` binary(60) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `role` enum('user','admin') NOT NULL DEFAULT 'user',
-  `modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `users_email_idx` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`user_id`, `status`, `email`, `password`, `firstname`, `lastname`, `role`, `modified`, `created`) VALUES (2,'active','israelvainberg@gmail.com',_binary '$2y$10$EtmoK34zNgfsyo4QC8Hlxe4BAjzTUvbHL6NiuSPG06mKSVu85JkU6','Israel','Vainberg','user',NULL,'2019-05-09 09:31:39'),(3,'active','israelvainberg2@gmail.com',_binary '$2y$10$Un5QLhaG.5Btijay2iVDCO6XjFnS7Lt8pidZpsyc5FOYXjsESpXea','Pika','Zvik','user',NULL,'2019-05-11 14:37:16'),(4,'active','israelvainberg3@gmail.com',_binary '$2y$10$Hz4YfR63m/96iNvTsY8YtuPYqclNsRm9I3sTo6r7f33rECJucgFVq','Toca','Toca','user',NULL,'2019-05-11 14:37:55'),(5,'active','israelvainberg4@gmail.com',_binary '$2y$10$p9Jj.ChjHGquVUgzc4KSVuEqkjQqiTTSeRxinoXLheolIqR7miu0O','Voo','Vue','user',NULL,'2019-05-12 11:45:48');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
