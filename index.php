@@ -61,12 +61,12 @@
 		}
 		else 
 		{
-			define('ENVIRONMENT', 'devellopment');
+			define('ENVIRONMENT', 'development');
 		}
 	}
 	else
 	{
-		define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+		define('ENVIRONMENT', 'development');
 	}
 /*
  *---------------------------------------------------------------
@@ -83,7 +83,7 @@ switch (ENVIRONMENT)
 		ini_set('display_errors', 1);
 	break;
 
-	case 'testing':
+	case 'staging':
 	case 'production':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
